@@ -11,15 +11,15 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - python >=3.8
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.8
+    - python >={{ python_min }}
     - six
 test:
   source_files:
@@ -28,6 +28,7 @@ test:
     - pip
     - pytest
     - pytest-cov
+    - python {{ python_min }}
   commands:
     - pip check
     - cd pytexit/test
